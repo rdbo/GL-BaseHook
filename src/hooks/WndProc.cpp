@@ -21,8 +21,11 @@ LRESULT CALLBACK Base::Hooks::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		}
 	}
 
-	if (Data::ShowMenu && Data::InitImGui && ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+	if (Data::ShowMenu && Data::InitImGui)
+	{
+		ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
 		return true;
+	}
 
 	return CallWindowProc(Data::oWndProc, hWnd, uMsg, wParam, lParam);
 }
